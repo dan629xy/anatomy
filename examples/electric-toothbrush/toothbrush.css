@@ -1,0 +1,116 @@
+.tbh-stage {
+  position: relative;
+  border-radius: 10px;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.tbh-stage:focus-visible {
+  outline: 1px solid var(--anatomy-muted);
+  outline-offset: 6px;
+}
+
+.tbh-stage > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tbh-stage[data-focus] .it:not([data-on]):not([data-piece="bench"]) {
+  --anatomy-hi: var(--anatomy-mid);
+  --anatomy-mid: var(--anatomy-lo);
+}
+
+.tbh-stage[data-focus] .it[data-piece="bench"] {
+  --anatomy-mid: var(--anatomy-lo);
+}
+
+.it[data-on] {
+  --anatomy-hi: var(--anatomy-lit);
+  --anatomy-mid: var(--anatomy-hi);
+}
+
+.it[data-on] .iso-top,
+.it[data-on] .tb-shine {
+  fill: var(--anatomy-lit-top);
+}
+
+.it[data-on] .iso-shade,
+.it[data-on] .tb-body {
+  fill: var(--anatomy-lit-shade);
+}
+
+.it[data-on] [data-seamless] > .iso-shade {
+  stroke: var(--anatomy-lit-shade);
+}
+
+.it[data-on] [data-seamless] > .iso-top {
+  stroke: var(--anatomy-lit-top);
+}
+
+.it[data-on] .iso-edge,
+.it[data-on] .tb-edge {
+  stroke: var(--anatomy-lit);
+}
+
+.iso-voice {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+  color: var(--anatomy-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.iso-voice-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  align-items: center;
+}
+
+.iso-voice button {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: 0;
+  background: var(--anatomy-card);
+  color: var(--anatomy-strong);
+  box-shadow: 0 0 0 1px var(--anatomy-mid);
+  font: 12px/1.2 var(--anatomy-mono);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.iso-voice button:hover {
+  color: var(--anatomy-lit);
+}
+
+.iso-voice button:focus-visible {
+  outline: 1px solid var(--anatomy-muted);
+  outline-offset: 3px;
+}
+
+.iso-voice-status {
+  font-family: var(--anatomy-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.iso-voice-line {
+  min-height: 2.4em;
+  margin: 0;
+  color: var(--anatomy-text);
+}
+
+.iso-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

@@ -9,3 +9,5 @@ audit.txt
 /capture.png
 .scratch/
 tmp/
+.tts-cache/
+**/.tts-cache/

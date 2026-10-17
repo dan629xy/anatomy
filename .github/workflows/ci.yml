@@ -37,6 +37,11 @@ jobs:
           node examples/dial-indicator/build.mjs
           node examples/dial-indicator/build.mjs --light
 
+      - name: Electric toothbrush
+        run: |
+          node examples/electric-toothbrush/build.mjs
+          node examples/electric-toothbrush/build.mjs --light
+
       - name: Desk computer
         run: |
           node examples/desk-computer/build.mjs

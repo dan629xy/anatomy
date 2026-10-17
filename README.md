@@ -243,6 +243,7 @@ Each framework-free example has a Node build script that writes standalone pages
 | [`test-rig`](examples/test-rig) | A production figure from a React/Next.js site: a glass button on a spring-mounted carriage, a finger probe on a rail, and a dial gauge reading the lean. 53 solids. No build script: copy it into a React app. | none |
 | [`spot-plate`](examples/spot-plate) | A second figure from the same site: six pairs of glass drops on a spot plate that run together into one piece of glass as a fan of feeler blades opens. Each pair is drawn from one distance field. No build script: copy it into a React app. | none |
 | [`turning-dial`](examples/turning-dial) | The 3D mode: a combination dial that turns in true 3D with a small robot hand on it, a three-hinge finger that lifts, and a pod that breaks off as a free body. `stress.mjs` is a 380-part hand in a cluttered workshop, used to measure performance. | `node examples/turning-dial/build.mjs` |
+| [`electric-toothbrush`](examples/electric-toothbrush) | 旋转振荡式电动牙刷（中文术语）。悬停拆开：充电座、线圈、锂离子电池、印刷电路板、直流电动机、偏心轮、刷头、防水密封圈、压力传感器。可选旁白层与部件 `lit` 对齐。 | `node examples/electric-toothbrush/build.mjs` |
 
 `node examples/raptor-engine/build.mjs --audit`, `node examples/arcade-cabinet/build.mjs --audit` and `node examples/turning-dial/build.mjs --light --audit` also run the geometry audit. The 3D audit is slow; see [`references/3d.md`](references/3d.md).
 
@@ -285,7 +286,9 @@ anatomy/
 │   ├── inline-kit.mjs        the kit as source, to inline into a standalone page
 │   ├── turn-check.mjs        3D checks in the browser (with turn-fidelity.mjs)
 │   └── turn-bench.mjs        3D timing in Node
-├── examples/                 eight complete figures, built pages committed
+├── examples/                 complete figures, built pages committed
+│   └── electric-toothbrush/  Chinese-term Hero + optional voice overlay
+├── scripts/voice/            optional TTS embed (skipped without MIMO_API_KEY)
 ├── evals/evals.json          test prompts and what a good answer contains
 └── .github/                  issue forms, PR template, CI, README images
 ```
@@ -310,6 +313,22 @@ anatomy/
 
 > [!NOTE]
 > **The 3D mode is beta.** It is proved on its example and one test figure, not yet on a production figure. A small 3D figure runs at 60 fps; the 380-part stress hand measured about 20 fps at 1440 px wide and 13 to 15 fps on a throttled phone profile, on a heavily loaded machine.
+
+## 可选配音层（本 fork）
+
+原版工作流、零件密度、画框四角、图例图注、`lit` 高亮与 idle tour **都不改**。新增的只是一层可选旁白：把图注/图例/读数里已经有的解说写成 `narration.json`，有密钥时逐句合成并内嵌进单文件 HTML，没密钥时页面安静、字幕与部件高亮仍可播放。
+
+产物里的英文专业术语改为教科书中文译名（对照表：[`examples/electric-toothbrush/terms.md`](examples/electric-toothbrush/terms.md)）。编号与单位保持原格式：`Fig 01`、`Hz`、`mAh`。
+
+样张：[`examples/electric-toothbrush`](examples/electric-toothbrush)（电动牙刷的工作原理）。打开方式、缺 Key 降级、本地 `MIMO_API_KEY=... node examples/electric-toothbrush/build.mjs` 重新构建，见该目录 [README](examples/electric-toothbrush/README.md)。
+
+缺 Key 时的构建日志：
+
+```text
+voice: MIMO_API_KEY is not set; skipping TTS. The page will ship with narration text and timed captions, without audio. Rebuild locally with MIMO_API_KEY=... node examples/electric-toothbrush/build.mjs
+```
+
+密钥只从环境变量 `MIMO_API_KEY` 读取，不要把任何密钥值写进仓库或日志。
 
 ## Share a figure
 

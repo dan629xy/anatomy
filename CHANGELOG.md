@@ -6,6 +6,7 @@ All notable changes to Anatomy are recorded here. The format follows [Keep a Cha
 
 ### Added
 
+- Optional narration overlay (`scripts/voice/`) and a Chinese-term Hero example, `examples/electric-toothbrush`: rotating-oscillating electric toothbrush with part highlighting locked to the caption script. TTS from `MIMO_API_KEY` is skipped when the key is absent; the page still plays captions on a timer.
 - Antigravity support, alongside Claude Code, OpenCode and Codex. Documented user and project installation paths in the README and CONTRIBUTING, updated SKILL.md compatibility, and added Antigravity to the bug report form.
 - MiniMax Code support. The README and CONTRIBUTING document its user (`~/.minimax/skills`) and project (`.minimax/skills`) folders and `npx skills add ... -a minimax-code`, SKILL.md lists it, and the bug report form offers it.
 

@@ -171,3 +171,17 @@ Read these as you need them:
 - `references/walkthrough.md`: how the test rig was designed, step by step, from concept to code.
 - `references/3d.md`: the optional 3D mode: groups and poses, live layers, convex parts and their rules, materials, free groups, hinge chains, painter's order, static clutter around a turntable, shaders that follow the turn, the orbit audit, browser checks, performance and limits.
 - `references/publish.md`: sharing a finished figure in the community gallery with `scripts/publish.mjs`, only when the user asks; nothing is pushed for them.
+
+## Optional voice layer and Chinese terms
+
+This section is an additive overlay. It does not change the workflow, the parts counts (Figure 40–80, Hero 80–150), the four-corner card, the legend and caption, the `lit` accent, the idle tour, or how the figure is built. Do not simplify the machine, the sentence rules, or the frame to make a children's version.
+
+**Chinese terms in the product.** Titles, legend keys, hint, readout, and part names use accurate textbook Chinese for the technical words (torque → 扭矩, bristle → 刷毛, oscillation → 振荡, waterproof seal → 防水密封圈). Numbering, values and units keep their original form (`Fig 01`, `Hz`, `mAh`, `r/min`, `IPX7`). Do not rewrite the terms into child-speak.
+
+**Optional narration.** After the figure exists, you may add a `narration.json` beside it: `[{ id, part, text, tts? }]`. Each line is one spoken sentence. `part` is the assembly id that should become `lit` while that line plays; `tts` is an optional human override of the spoken text. The player advances on the audio `ended` event when clips exist, and on a caption timer when they do not. Idle tour pauses while narration plays.
+
+**TTS, only when a key is present.** Synthesis talks to `POST https://api.xiaomimimo.com/v1/chat/completions` with model `mimo-v2.5-tts`, header `api-key`, voice `冰糖` unless `VOICE` is set. The key is read from `MIMO_API_KEY` only; never write a key into the repo or the logs. The user message is a short adult, neutral, professional style prompt; the assistant message is the line to read. `scripts/voice/tts.mjs` trims silence, loudnorm `I=-16`, retries 429/5xx, and re-rolls clips that run longer than the character budget. `scripts/voice/embed.mjs` encodes 48 kbps MP3, caches by SHA1 of the text, and inlines `data:audio/mpeg;base64,…` into the standalone page so playback needs no network.
+
+**No key, no sound, no error.** If `MIMO_API_KEY` is unset, skip synthesis, print `voice: MIMO_API_KEY is not set; skipping TTS. The page will ship with narration text and timed captions, without audio. Rebuild locally with MIMO_API_KEY=... node examples/electric-toothbrush/build.mjs`, and ship a quiet page that still plays captions and lights parts. Rebuild later with `MIMO_API_KEY=... node examples/<name>/build.mjs`.
+
+The reference figure for this overlay is `examples/electric-toothbrush/` (a rotating-oscillating electric toothbrush). Glossary: `examples/electric-toothbrush/terms.md`. How to turn voice on: `examples/electric-toothbrush/README.md`.
