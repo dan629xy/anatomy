@@ -1,0 +1,27 @@
+[
+  {
+    "part": "mouth",
+    "zh": "小嘴巴是喝水的门。",
+    "tts": "xiao3 ma1 ba5 shi4 he1 shui3 de5 men2"
+  },
+  {
+    "part": "factory",
+    "zh": "身体里的小机器要喝水。",
+    "tts": "shen1 ti3 li5 de5 xiao3 ji1 qi4 yao4 he1 shui3"
+  },
+  {
+    "part": "courier",
+    "zh": "水滴去给小机器送水。",
+    "tts": "shui3 di1 qu4 gei3 xiao3 ji1 qi4 song4 shui3"
+  },
+  {
+    "part": "flush",
+    "zh": "水把脏东西冲走。",
+    "tts": "shui3 ba3 zang1 dong1 xi5 chong1 zou3"
+  },
+  {
+    "part": "exit",
+    "zh": "出汗的时候水会跑出去。",
+    "tts": "chu1 han4 de5 shi2 hou5 shui3 hui4 pao3 chu1 qu4"
+  }
+]
